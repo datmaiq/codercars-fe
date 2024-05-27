@@ -25,11 +25,15 @@ const HomePage = () => {
     setMode("edit");
     setSelectedCar(cars.find((car) => car._id === id));
     setOpenForm(true);
+    console.log(selectedCar);
   };
 
-  const handleClickDelete = (id) => {
+  const handleClickDelete = (value) => {
     setOpenConfirm(true);
-    setSelectedCar(cars.find((car) => car._id === id));
+
+    const car = cars.find((car) => car._id === value);
+
+    setSelectedCar(car);
   };
   const handleDelete = async () => {
     try {
@@ -68,6 +72,7 @@ const HomePage = () => {
           <IconButton onClick={() => handleClickEdit(value)}>
             <EditIcon />
           </IconButton>
+          {/* <IconButton onClick={() => console.log("delete")}> */}
           <IconButton onClick={() => handleClickDelete(value)}>
             <DeleteIcon />
           </IconButton>
@@ -78,17 +83,18 @@ const HomePage = () => {
   const rows = cars.map((car) => ({
     id: car._id,
     name: car.make + " " + car.model,
-    size: car.size,
-    style: car.style,
+    size: car.vehicle_size,
+    style: car.vehicle_style,
     transmission_type: car.transmission_type,
-    price: car.price,
-    release_date: car.release_date,
+    price: car.msrp,
+    release_date: car.year,
   }));
 
   const getData = useCallback(async () => {
     const res = await apiService.get(`/cars?page=${page}`);
     console.log(res);
 
+    console.log(res.cars);
     setCars(res.cars);
     setTotalPages(res.total);
   }, [page]);
