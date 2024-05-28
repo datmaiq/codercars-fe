@@ -201,11 +201,11 @@ export default function FormModal({
               ) : null}
             </FormControl>
             <TextField
-              error={errors.style}
-              helperText={errors.style ? errors.style : null}
+              error={errors.vehicle_style}
+              helperText={errors.vehicle_style ? errors.vehicle_style : null}
               value={form.vehicle_style}
               margin="dense"
-              name="style"
+              name="vehicle_style"
               label="Style"
               type="text"
               fullWidth
@@ -230,10 +230,10 @@ export default function FormModal({
               />
 
               <TextField
-                value={form.price}
+                value={form.msrp}
                 onChange={handleChange}
-                error={errors.price}
-                helperText={errors.price ? errors.price : null}
+                error={errors.msrp}
+                helperText={errors.msrp ? errors.msrp : null}
                 margin="dense"
                 name="msrp"
                 label="Price"

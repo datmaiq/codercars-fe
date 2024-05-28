@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiService = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "https://codercars-be-b9w7.onrender.com/",
 });
 
 apiService.interceptors.request.use(
